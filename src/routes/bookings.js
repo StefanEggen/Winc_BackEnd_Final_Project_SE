@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getBookings } from "../services/bookings";
-import { createBooking } from "../services/bookings";
-import { getBookingById } from "../services/bookings";
-import { updateBookingById } from "../services/bookings";
-import { deleteBookingById } from "../services/bookings";
-import auth from "../middleware/auth";
+import getBookings from "../services/bookings/getBookings.js";
+import createBooking from "../services/bookings/createBooking.js";
+import getBookingById from "../services/bookings/getBookingById.js";
+import updateBookingById from "../services/bookings/updateBookingById.js";
+import deleteBookingById from "../services/bookings/deleteBookingById.js";
+import auth from "../middleware/auth.js";
 
 const router = Router();
 

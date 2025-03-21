@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getUsers } from "../services/users";
-import { createUser } from "../services/users";
-import { getUserById } from "../services/users";
-import { deleteUserById } from "../services/users";
-import { updateUserById } from "../services/users/updateUserById";
-import auth from "../middleware/auth";
+import getUsers from "../services/users/getUsers.js";
+import createUser from "../services/users/createUser.js";
+import getUserById from "../services/users/getUserById.js";
+import deleteUserById from "../services/users/deleteUserById.js";
+import updateUserById from "../services/users/updateUserById.js";
+import auth from "../middleware/auth.js";
 
 const router = Router();
 

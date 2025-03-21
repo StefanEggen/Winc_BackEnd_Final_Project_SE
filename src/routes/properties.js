@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getProperties } from "../services/properties";
-import { createProperty } from "../services/properties";
-import { getPropertyById } from "../services/properties";
-import { updatePropertyById } from "../services/properties";
-import { deletePropertyById } from "../services/properties";
-import auth from "../middleware/auth";
+import getProperties from "../services/properties/getProperties.js";
+import createProperty from "../services/properties/createProperty.js";
+import getPropertyById from "../services/properties/getPropertyById.js";
+import updatePropertyById from "../services/properties/updatePropertyById.js";
+import deletePropertyById from "../services/properties/deletePropertyById.js";
+import auth from "../middleware/auth.js";
 
 const router = Router();
 

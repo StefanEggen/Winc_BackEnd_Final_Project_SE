@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getReviews } from "../services/reviews";
-import { createReview } from "../services/reviews";
-import { getReviewById } from "../services/reviews";
-import { deleteReviewById } from "../services/reviews";
-import { updateReviewById } from "../services/reviews";
-import auth from "../middleware/auth";
+import getReviews from "../services/reviews/getReviews.js";
+import createReview from "../services/reviews/createReview.js";
+import getReviewById from "../services/reviews/getReviewById.js";
+import deleteReviewById from "../services/reviews/deleteReviewById.js";
+import updateReviewById from "../services/reviews/updateReviewById.js";
+import auth from "../middleware/auth.js";
 
 const router = Router();
 

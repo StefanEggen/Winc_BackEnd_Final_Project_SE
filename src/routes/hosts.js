@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getHosts } from "../services/hosts";
-import { createHost } from "../services/hosts";
-import { getHostById } from "../services/hosts";
-import { updateHostById } from "../services/hosts";
-import { deleteHostById } from "../services/hosts";
-import auth from "../middleware/auth";
+import getHosts from "../services/hosts/getHosts.js";
+import createHost from "../services/hosts/createHost.js";
+import getHostById from "../services/hosts/getHostById.js";
+import updateHostById from "../services/hosts/updateHostById.js";
+import deleteHostById from "../services/hosts/deleteHostById.js";
+import auth from "../middleware/auth.js";
 
 const router = Router();
 

@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getAmenities } from "../services/amenities";
-import { createAmenity } from "..amenities/services/amenities";
-import { getAmenityById } from "../services/amenities";
-import { updateAmenityById } from "../services/amenities";
-import { deleteAmenityById } from "../services/amenities";
-import auth from "../middleware/auth";
+import getAmenities from "../services/amenities/getAmenities.js";
+import createAmenity from "../services/amenities/createAmenity.js";
+import getAmenityById from "../services/amenities/getAmenityById.js";
+import updateAmenityById from "../services/amenities/updateAmenityById.js";
+import deleteAmenityById from "../services/amenities/getAmenityById.js";
+import auth from "../middleware/auth.js";
 
 const router = Router();
 
