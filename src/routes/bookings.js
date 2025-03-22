@@ -10,6 +10,21 @@ const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
+    const { userId } = req.query;
+
+    if (userId) {
+      // Use getBookingById to fetch bookings by userId
+      const bookings = await getBookingById(userId, "userId");
+      if (bookings) {
+        return res.json(bookings);
+      } else {
+        return res
+          .status(404)
+          .json({ error: `Booking with userId ${userId} not found` });
+      }
+    }
+
+    // If no userId is provided, return all bookings
     const bookings = await getBookings();
     res.json(bookings);
   } catch (error) {
