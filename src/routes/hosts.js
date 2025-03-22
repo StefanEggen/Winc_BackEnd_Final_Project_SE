@@ -10,6 +10,18 @@ const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
+    const { name } = req.query;
+
+    if (name) {
+      // Use getHostById to fetch host by name
+      const host = await getHostById(name, "name");
+      if (host) {
+        return res.json(host);
+      } else {
+        return res.status(404).json({ error: `Host with name ${name} not found` });
+      }
+    }
+
     const hosts = await getHosts();
     res.json(hosts);
   } catch (error) {

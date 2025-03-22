@@ -10,6 +10,30 @@ const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
+    const { username, email } = req.query;
+
+    if (username) {
+      // Use getUserById to fetch user by username
+      const user = await getUserById(username, "username");
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json({ error: `User with username ${username} not found` });
+      }
+      return;
+    }
+
+    if (email) {
+      // Use getUserById to fetch user by email
+      const user = await getUserById(email, "email");
+      if (user) {
+        return res.json(user);
+      } else {
+        return res.status(404).json({ error: `User with email ${email} not found` });
+      }
+    }
+
+    // If no username is provided, return all users
     const users = await getUsers();
     res.json(users);
   } catch (error) {
@@ -66,7 +90,9 @@ router.put("/:id", auth, async (req, res, next) => {
     );
 
     if (updatedUser) {
-      res.status(200).send({ message: "User with id ${id} updated successfully" });
+      res
+        .status(200)
+        .send({ message: "User with id ${id} updated successfully" });
     } else {
       res.status(404).json({ message: "User with id ${id} not found" });
     }
@@ -81,7 +107,9 @@ router.delete("/:id", auth, async (req, res, next) => {
     const deletedUser = await deleteUserById(id);
 
     if (deletedUser) {
-      res.status(200).send({ message: "User with id ${id} deleted successfully" });
+      res
+        .status(200)
+        .send({ message: "User with id ${id} deleted successfully" });
     } else {
       res.status(404).json({ message: "User with id ${id} not found" });
     }
