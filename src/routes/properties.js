@@ -10,8 +10,17 @@ const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const properties = await getProperties();
-    res.json(properties);
+    const { location, pricePerNight, amenities } = req.query;
+
+    // Use getPropertyById to fetch properties based on filters
+    const filters = { location, pricePerNight, amenities };
+    const properties = await getPropertyById(filters);
+
+    if (properties.length > 0) {
+      res.json(properties);
+    } else {
+      res.status(404).json({ error: "No properties found matching the filters" });
+    }
   } catch (error) {
     next(error);
   }
