@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const updateAmenityById = async (id, updatedAmenity) => {
-  const prisma = new Prisma();
+  const prisma = new PrismaClient();
   const amenity = await prisma.amenity.update({
     where: { id },
     data: updatedAmenity,

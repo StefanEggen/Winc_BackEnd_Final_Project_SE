@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const getBookings = async () => {
-  const prisma = new Prisma();
+  const prisma = new PrismaClient();
   const bookings = await prisma.booking.findMany();
 
   return bookings;

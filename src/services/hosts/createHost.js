@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const createHost = async (
   username,
@@ -19,7 +19,7 @@ const createHost = async (
     aboutMe,
   };
 
-  const prisma = new Prisma();
+  const prisma = new PrismaClient();
   const host = await prisma.host.create({
     data: newHost,
   });

@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const getAmenityById = async (id) => {
-  const prisma = new Prisma();
+  const prisma = new PrismaClient();
   const amenity = await prisma.amenity.findUnique({
     where: { id },
   });

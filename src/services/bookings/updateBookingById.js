@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const updateBookingById = async (id, updatedBooking) => {
-  const prisma = new Prisma();
+  const prisma = new PrismaClient();
   const booking = await prisma.booking.update({
     where: { id },
     data: updatedBooking,

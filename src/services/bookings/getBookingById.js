@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const getBookingById = async (id) => {
-  const prisma = new Prisma();
+  const prisma = new PrismaClient();
   const booking = await prisma.booking.findUnique({
     where: { id },
   });
