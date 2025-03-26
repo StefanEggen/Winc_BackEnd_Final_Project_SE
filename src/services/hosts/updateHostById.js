@@ -1,13 +1,30 @@
 import { PrismaClient } from "@prisma/client";
 
-const updateHostById = async (id, updatedHost) => {
+const updateHostById = async (
+  id,
+  username,
+  password,
+  name,
+  email,
+  phoneNumber,
+  profilePicture,
+  aboutMe
+) => {
   const prisma = new PrismaClient();
-  const host = await prisma.host.update({
+  const updatedHost = await prisma.host.update({
     where: { id },
-    data: updatedHost,
+    data: {
+      username,
+      password,
+      name,
+      email,
+      phoneNumber,
+      profilePicture,
+      aboutMe,
+    },
   });
 
-  return host.count > 0 ? id : null;
+  return updatedHost;
 };
 
 export default updateHostById;

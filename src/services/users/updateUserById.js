@@ -1,13 +1,28 @@
 import { PrismaClient } from "@prisma/client";
 
-const updateUserById = async (id, updatedUser) => {
+const updateUserById = async (
+  id,
+  username,
+  password,
+  name,
+  email,
+  phoneNumber,
+  profilePicture
+) => {
   const prisma = new PrismaClient();
-  const user = await prisma.user.updateMany({
+  const updatedUser = await prisma.user.updateMany({
     where: { id },
-    data: updatedUser,
+    data: {
+      username,
+      password,
+      name,
+      email,
+      phoneNumber,
+      profilePicture,
+    },
   });
 
-  return user.count > 0 ? id : null;
+  return updatedUser;
 };
 
 export default updateUserById;

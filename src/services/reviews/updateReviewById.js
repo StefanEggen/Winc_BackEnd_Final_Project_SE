@@ -1,13 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 
-const updateReviewById = async (id, updatedReview) => {
+const updateReviewById = async (id, propertyId, userId, rating, comment) => {
   const prisma = new PrismaClient();
-  const review = await prisma.review.update({
+  const updatedReview = await prisma.review.update({
     where: { id },
-    data: updatedReview,
+    data: {
+      propertyId,
+      userId,
+      rating,
+      comment,
+    },
   });
 
-  return review.count > 0 ? id : null;
+  return updatedReview;
 };
 
 export default updateReviewById;

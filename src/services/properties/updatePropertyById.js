@@ -1,13 +1,34 @@
 import { PrismaClient } from "@prisma/client";
 
-const updatePropertyById = async (id, updatedProperty) => {
+const updatePropertyById = async (
+  id,
+  title,
+  description,
+  location,
+  pricePerNight,
+  bedroomCount,
+  bathRoomCount,
+  maxGuestCount,
+  hostId,
+  rating
+) => {
   const prisma = new PrismaClient();
-  const property = await prisma.property.update({
+  const updatedProperty = await prisma.property.update({
     where: { id },
-    data: updatedProperty,
+    data: {
+      title,
+      description,
+      location,
+      pricePerNight,
+      bedroomCount,
+      bathRoomCount,
+      maxGuestCount,
+      hostId,
+      rating,
+    },
   });
 
-  return property.count > 0 ? id : null;
+  return updatedProperty;
 };
 
 export default updatePropertyById;

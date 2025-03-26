@@ -27,11 +27,16 @@ async function main() {
 
     // Seed reviews
     for (const review of reviews) {
-    await prisma.review.upsert({
-        where: { id: review.id },
-        update: {},
-        create: review,
-    });
+        await prisma.review.upsert({
+          where: { id: review.id },
+          update: {},
+          create: {
+            ...review,
+            userId: users[0].id, // Ensure userId exists
+            propertyId: properties[0].id, // Ensure propertyId exists
+          },
+        });
+
 
     // Seed bookings
     for (const booking of bookings) {

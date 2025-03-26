@@ -1,13 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 
-const updateAmenityById = async (id, updatedAmenity) => {
+const updateAmenityById = async (id, name) => {
   const prisma = new PrismaClient();
-  const amenity = await prisma.amenity.update({
+  const updatedAmenity = await prisma.amenity.update({
     where: { id },
-    data: updatedAmenity,
+    data: { name },
   });
 
-  return amenity.count > 0 ? id : null;
+  return updatedAmenity;
 };
 
 export default updateAmenityById;
