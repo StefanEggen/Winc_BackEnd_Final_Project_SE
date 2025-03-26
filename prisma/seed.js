@@ -41,11 +41,15 @@ async function main() {
     // Seed bookings
     for (const booking of bookings) {
         await prisma.booking.upsert({
-            where: { id: booking.id },
-            update: {},
-            create: booking,
+          where: { id: booking.id },
+          update: {},
+          create: {
+            ...booking,
+            userId: users[0].id, // Ensure userId exists
+            propertyId: properties[0].id, // Ensure propertyId exists
+          },
         });
-    }
+      }
 
     // Seed properties
     for (const property of properties) {

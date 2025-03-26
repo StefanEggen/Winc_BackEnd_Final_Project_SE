@@ -1,13 +1,30 @@
 import { PrismaClient } from "@prisma/client";
 
-const updateBookingById = async (id, updatedBooking) => {
+const updateBookingById = async (
+  id,
+  userId,
+  propertyId,
+  checkinDate,
+  checkoutDate,
+  numberOfGuests,
+  totalPrice,
+  bookingStatus
+) => {
   const prisma = new PrismaClient();
-  const booking = await prisma.booking.update({
+  const updatedBooking = await prisma.booking.update({
     where: { id },
-    data: updatedBooking,
+    data: {
+      userId,
+      propertyId,
+      checkinDate,
+      checkoutDate,
+      numberOfGuests,
+      totalPrice,
+      bookingStatus,
+    },
   });
 
-  return booking.count > 0 ? id : null;
+  return updatedBooking;
 };
 
 export default updateBookingById;
