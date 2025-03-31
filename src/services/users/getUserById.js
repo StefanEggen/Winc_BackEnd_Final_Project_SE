@@ -7,6 +7,14 @@ const getUserById = async (value, field = "id") => {
   if (field === "email") {
     const user = await prisma.user.findFirst({
       where: { email: value },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        email: true,
+        phoneNumber: true,
+        profilePicture: true,
+      },
     });
     return user;
   }
@@ -14,6 +22,14 @@ const getUserById = async (value, field = "id") => {
   // Use findUnique for unique fields like "id" or "username"
   const user = await prisma.user.findUnique({
     where: { [field]: value },
+    select: {
+      id: true,
+      username: true,
+      name: true,
+      email: true,
+      phoneNumber: true,
+      profilePicture: true,
+    }
   });
 
   return user;

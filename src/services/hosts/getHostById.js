@@ -12,6 +12,15 @@ const getHostById = async (value, field = "id") => {
           contains: normalizedValue, // Perform a partial match
         },
       },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        email: true,
+        phoneNumber: true,
+        profilePicture: true,
+        aboutMe: true,
+      },
     });
     return host;
   }
@@ -19,6 +28,15 @@ const getHostById = async (value, field = "id") => {
   // Use findUnique for unique fields like "id" or "username"
   const host = await prisma.host.findUnique({
     where: { [field]: value },
+    select: {
+      id: true,
+      username: true,
+      name: true,
+      email: true,
+      phoneNumber: true,
+      profilePicture: true,
+      aboutMe: true,
+    }
   });
 
   return host;
