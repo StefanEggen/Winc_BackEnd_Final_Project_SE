@@ -27,30 +27,29 @@ async function main() {
 
     // Seed reviews
     for (const review of reviews) {
-        await prisma.review.upsert({
-          where: { id: review.id },
-          update: {},
-          create: {
-            ...review,
-            userId: users[0].id, // Ensure userId exists
-            propertyId: properties[0].id, // Ensure propertyId exists
-          },
-        });
-
+      await prisma.review.upsert({
+        where: { id: review.id },
+        update: {},
+        create: {
+          ...review,
+          userId: review.userId, // Use the userId from the JSON file
+          propertyId: review.propertyId, // Use the propertyId from the JSON file
+        },
+      });
 
     // Seed bookings
     for (const booking of bookings) {
-        await prisma.booking.upsert({
-          where: { id: booking.id },
-          update: {},
-          create: {
-            ...booking,
-            userId: users[0].id, // Ensure userId exists
-            propertyId: properties[0].id, // Ensure propertyId exists
-          },
-        });
-      }
-
+      await prisma.booking.upsert({
+        where: { id: booking.id },
+        update: {},
+        create: {
+          ...booking,
+          userId: booking.userId, // Use the userId from the JSON file
+          propertyId: booking.propertyId, // Use the propertyId from the JSON file
+        },
+      });
+    }
+    
     // Seed properties
     for (const property of properties) {
         await prisma.property.upsert({
@@ -59,6 +58,7 @@ async function main() {
             create: property,
         });
     }
+
 
     // Seed hosts
     for (const host of hosts) {
