@@ -768,7 +768,7 @@
                   "variable": [
                     {
                       "key": "propertyId",
-                      "value": "h0123456-78f0-1234-5678-9abcdef01234",
+                      "value": "00000000-0000-0000-0000-000000000000",
                       "description": "(Required) "
                     }
                   ]
@@ -1486,7 +1486,7 @@
                   "variable": [
                     {
                       "key": "bookingId",
-                      "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                      "value": "00000000-0000-0000-0000-000000000000",
                       "description": "(Required) "
                     }
                   ]
@@ -1506,7 +1506,7 @@
                       "variable": [
                         {
                           "key": "bookingId",
-                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
+                          "value": "00000000-0000-0000-0000-000000000000",
                           "description": "(Required) "
                         }
                       ]
@@ -1845,7 +1845,7 @@
                   "variable": [
                     {
                       "key": "reviewId",
-                      "value": "j0123456-78f0-1234-5678-9abcdef01234",
+                      "value": "00000000-0000-0000-0000-000000000000",
                       "description": "(Required) "
                     }
                   ]
