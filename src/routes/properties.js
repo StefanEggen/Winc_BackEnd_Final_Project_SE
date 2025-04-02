@@ -5,6 +5,7 @@ import getPropertyById from "../services/properties/getPropertyById.js";
 import updatePropertyById from "../services/properties/updatePropertyById.js";
 import deletePropertyById from "../services/properties/deletePropertyById.js";
 import auth from "../middleware/auth.js";
+import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -59,7 +60,7 @@ router.post("/", auth, async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const property = await getPropertyById(id);
+    const property = await getPropertyById({ id });
 
     if (!property) {
       res.status(404).json({ error: `Property with id ${id} not found` });
@@ -113,6 +114,11 @@ router.put("/:id", auth, async (req, res, next) => {
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    if (!isUuid(id)) {
+      return res.status(404).json({ error: "Property with id ${id} not found" });
+    }
+
     const deletedProperty = await deletePropertyById(id);
 
     if (deletedProperty) {

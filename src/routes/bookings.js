@@ -5,6 +5,7 @@ import getBookingById from "../services/bookings/getBookingById.js";
 import updateBookingById from "../services/bookings/updateBookingById.js";
 import deleteBookingById from "../services/bookings/deleteBookingById.js";
 import auth from "../middleware/auth.js";
+import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -15,12 +16,12 @@ router.get("/", async (req, res, next) => {
     if (userId) {
       // Use getBookingById to fetch bookings by userId
       const bookings = await getBookingById(userId, "userId");
-      if (bookings) {
+      if (bookings && bookings.length > 0) {
         return res.json(bookings);
       } else {
         return res
           .status(404)
-          .json({ error: `Booking with userId ${userId} not found` });
+          .json({ error: `No bookings found for userId ${userId}` });
       }
     }
 
@@ -110,6 +111,11 @@ router.put("/:id", auth, async (req, res, next) => {
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    if (!isUuid(id)) {
+      return res.status(404).json({ error: "Booking with id ${id} not found" });
+    }
+
     const deletedBooking = await deleteBookingById(id);
 
     if (deletedBooking) {
