@@ -5,6 +5,7 @@ import getUserById from "../services/users/getUserById.js";
 import deleteUserById from "../services/users/deleteUserById.js";
 import updateUserById from "../services/users/updateUserById.js";
 import auth from "../middleware/auth.js";
+import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -18,7 +19,9 @@ router.get("/", async (req, res, next) => {
       if (user) {
         res.json(user);
       } else {
-        res.status(404).json({ error: `User with username ${username} not found` });
+        res
+          .status(404)
+          .json({ error: `User with username ${username} not found` });
       }
       return;
     }
@@ -29,7 +32,9 @@ router.get("/", async (req, res, next) => {
       if (user) {
         return res.json(user);
       } else {
-        return res.status(404).json({ error: `User with email ${email} not found` });
+        return res
+          .status(404)
+          .json({ error: `User with email ${email} not found` });
       }
     }
 
@@ -45,6 +50,16 @@ router.post("/", auth, async (req, res, next) => {
   try {
     const { username, password, name, email, phoneNumber, profilePicture } =
       req.body;
+
+    // Check if a user with the same username already exists
+    const existingUser = await getUserById(username, "username");
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ error: `Username "${username}" already exists.` });
+    }
+
+    // Create the new user
     const newUser = await createUser(
       username,
       password,
@@ -104,6 +119,12 @@ router.put("/:id", auth, async (req, res, next) => {
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    // Validate the userId format
+    if (!isUuid(id)) {
+      return res.status(404).json({ message: `User with id ${id} not found` });
+    }
+
     const deletedUser = await deleteUserById(id);
 
     if (deletedUser) {
