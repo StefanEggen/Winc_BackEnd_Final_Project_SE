@@ -3,8 +3,9 @@ import getAmenities from "../services/amenities/getAmenities.js";
 import createAmenity from "../services/amenities/createAmenity.js";
 import getAmenityById from "../services/amenities/getAmenityById.js";
 import updateAmenityById from "../services/amenities/updateAmenityById.js";
-import deleteAmenityById from "../services/amenities/getAmenityById.js";
+import deleteAmenityById from "../services/amenities/deleteAmenityById.js";
 import auth from "../middleware/auth.js";
+import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -45,6 +46,11 @@ router.get("/:id", async (req, res, next) => {
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    if (!isUuid(id)) {
+      return res.status(404).json({ error: `Amenity with id ${id} not found` });
+    }
+
     const { name } = req.body;
     const updatedAmenity = await updateAmenityById(id, name);
 

@@ -74,6 +74,11 @@ router.get("/:id", async (req, res, next) => {
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    if (!isUuid(id)) {
+      return res.status(404).json({ error: `Host with id ${id} not found` });
+    }
+
     const {
       username,
       password,
