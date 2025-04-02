@@ -6,14 +6,14 @@ const getBookingById = async (value, field = "id") => {
   // Use findMany for non-unique fields like "userId"
   if (field === "userId") {
     const bookings = await prisma.booking.findMany({
-      where: { [field]: value },
+      where: { userId: value }, // Explicitly filter by userId
     });
     return bookings;
   }
 
   // Use findUnique for unique fields like "id"
   const booking = await prisma.booking.findUnique({
-    where: { [field]: value },
+    where: { id: value }, // Explicitly filter by id
   });
 
   return booking;

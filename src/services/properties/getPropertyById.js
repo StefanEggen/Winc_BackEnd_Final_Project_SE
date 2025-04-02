@@ -3,11 +3,19 @@ import { PrismaClient } from "@prisma/client";
 const getPropertyById = async (filters) => {
   const prisma = new PrismaClient();
 
-  // Build the dynamic filter object
-  const where = {};
+  // If the `id` filter is provided, use `findUnique` to fetch a single property
   if (filters.id) {
-    where.id = filters.id; // Exact match for id
+    const property = await prisma.property.findUnique({
+      where: { id: filters.id },
+      include: {
+        amenities: true, // Include related amenities in the result
+      },
+    });
+    return property; // Return a single property object
   }
+
+  // Build the dynamic filter object for `findMany`
+  const where = {};
   if (filters.location) {
     where.location = {
       contains: filters.location, // Partial match for location
@@ -32,7 +40,7 @@ const getPropertyById = async (filters) => {
     },
   });
 
-  return properties;
+  return properties; // Return an array of properties
 };
 
 export default getPropertyById;
