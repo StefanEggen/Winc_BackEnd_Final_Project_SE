@@ -553,7 +553,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"Alex\",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"phoneNumber\": \"123-456-7890\",\n  \"profilePicture\": \"https://global-uploads.webflow.com/5eecfecbe625d195e35b89f2/624bfb093da7d92733c001c0_Ignacio%20Villafruela%20Rodr%C3%ADguez.jpg\"\n}",
+              "raw": "{\n  \"username\": \"Alex2\",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"phoneNumber\": \"123-456-7890\",\n  \"profilePicture\": \"https://global-uploads.webflow.com/5eecfecbe625d195e35b89f2/624bfb093da7d92733c001c0_Ignacio%20Villafruela%20Rodr%C3%ADguez.jpg\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1156,7 +1156,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"newhosty \",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}",
+              "raw": "{\n  \"username\": \"newhosty2\",\n  \"password\": \"password123\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1266,7 +1266,7 @@
                   "variable": [
                     {
                       "key": "propertyId",
-                      "value": "j2345678-90f1-2345-6789-abcdef012345",
+                      "value": "q3456789-01f2-3456-789a-bcdef0123456",
                       "description": "(Required) "
                     }
                   ]
@@ -1387,7 +1387,7 @@
                   "variable": [
                     {
                       "key": "propertyId",
-                      "value": "i1234567-89f0-1234-5678-9abcdef01234",
+                      "value": "q3456789-01f2-3456-789a-bcdef0123456",
                       "description": "(Required) "
                     }
                   ]
@@ -1570,7 +1570,7 @@
                   "variable": [
                     {
                       "key": "propertyId",
-                      "value": "k3456789-01f2-3456-789a-bcdef0123456",
+                      "value": "q3456789-01f2-3456-789a-bcdef0123456",
                       "description": "(Required) "
                     }
                   ]

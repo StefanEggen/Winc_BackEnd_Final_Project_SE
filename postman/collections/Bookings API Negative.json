@@ -285,8 +285,8 @@
               "script": {
                 "id": "8ed54ae1-f2bf-493a-be19-d560601ebdc1",
                 "exec": [
-                  "pm.test(\"Response status code is 500\", function() {",
-                  "    pm.response.to.have.status(500);",
+                  "pm.test(\"Response status code is 400\", function() {",
+                  "    pm.response.to.have.status(400);",
                   "});",
                   ""
                 ],
@@ -325,7 +325,7 @@
           "response": [
             {
               "id": "0bcfd54c-a801-4cd8-bcfc-554f12f8fedb",
-              "name": "Internal Server Error",
+              "name": "Bad request",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -350,8 +350,8 @@
                   "path": ["users"]
                 }
               },
-              "status": "Internal Server Error",
-              "code": 500,
+              "status": "Bad Request",
+              "code": 400,
               "_postman_previewlanguage": "text",
               "header": [
                 {
@@ -644,8 +644,8 @@
               "script": {
                 "id": "f55b6bbf-f08a-42d5-ac24-d7fafa3249bf",
                 "exec": [
-                  "pm.test(\"Response status code is 500\", function() {",
-                  "    pm.response.to.have.status(500);",
+                  "pm.test(\"Response status code is 400\", function() {",
+                  "    pm.response.to.have.status(400);",
                   "});",
                   ""
                 ],
@@ -684,7 +684,7 @@
           "response": [
             {
               "id": "945ce35d-c784-4eb0-9581-cbe7b283b885",
-              "name": "Internal Server Error",
+              "name": "Bad request",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -709,8 +709,8 @@
                   "path": ["hosts"]
                 }
               },
-              "status": "Internal Server Error",
-              "code": 500,
+              "status": "Bad Request",
+              "code": 400,
               "_postman_previewlanguage": "text",
               "header": [
                 {
@@ -768,7 +768,7 @@
                   "variable": [
                     {
                       "key": "propertyId",
-                      "value": "00000000-0000-0000-0000-000000000000",
+                      "value": "h0123456-78f0-1234-5678-9abcdef01234",
                       "description": "(Required) "
                     }
                   ]
@@ -1003,8 +1003,8 @@
               "script": {
                 "id": "2d67ec53-b749-4255-81bf-a4798c45b42f",
                 "exec": [
-                  "pm.test(\"Response status code is 500\", function() {",
-                  "    pm.response.to.have.status(500);",
+                  "pm.test(\"Response status code is 400\", function() {",
+                  "    pm.response.to.have.status(400);",
                   "});",
                   ""
                 ],
@@ -1043,7 +1043,7 @@
           "response": [
             {
               "id": "78eccab6-5031-4394-b6a1-a53db5ec50d9",
-              "name": "Internal Server Error",
+              "name": "Bad request",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -1068,8 +1068,8 @@
                   "path": ["properties"]
                 }
               },
-              "status": "Internal Server Error",
-              "code": 500,
+              "status": "Bad Request",
+              "code": 400,
               "_postman_previewlanguage": "text",
               "header": [
                 {
@@ -1362,8 +1362,8 @@
               "script": {
                 "id": "a5516886-ab38-4b49-87d3-0f8f325c3263",
                 "exec": [
-                  "pm.test(\"Response status code is 500\", function() {",
-                  "    pm.response.to.have.status(500);",
+                  "pm.test(\"Response status code is 400\", function() {",
+                  "    pm.response.to.have.status(400);",
                   "});",
                   ""
                 ],
@@ -1402,7 +1402,7 @@
           "response": [
             {
               "id": "490ee5a5-618b-4b1f-9714-27befe474652",
-              "name": "Internal Server Error",
+              "name": "Bad request",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -1427,8 +1427,8 @@
                   "path": ["amenities"]
                 }
               },
-              "status": "Internal Server Error",
-              "code": 500,
+              "status": "Bad Request",
+              "code": 400,
               "_postman_previewlanguage": "text",
               "header": [
                 {
@@ -1486,7 +1486,7 @@
                   "variable": [
                     {
                       "key": "bookingId",
-                      "value": "00000000-0000-0000-0000-000000000000",
+                      "value": "f0123456-78ab-cdef-0123-456789abcdef",
                       "description": "(Required) "
                     }
                   ]
@@ -1506,7 +1506,7 @@
                       "variable": [
                         {
                           "key": "bookingId",
-                          "value": "00000000-0000-0000-0000-000000000000",
+                          "value": "f0123456-78ab-cdef-0123-456789abcdef",
                           "description": "(Required) "
                         }
                       ]
@@ -1721,8 +1721,8 @@
               "script": {
                 "id": "29194617-e961-41fc-857d-05758f0cf4b3",
                 "exec": [
-                  "pm.test(\"Response status code is 500\", function() {",
-                  "    pm.response.to.have.status(500);",
+                  "pm.test(\"Response status code is 400\", function() {",
+                  "    pm.response.to.have.status(400);",
                   "});",
                   ""
                 ],
@@ -1761,7 +1761,7 @@
           "response": [
             {
               "id": "03c5fbe2-a7df-4cbd-8ce1-7d80dc31529a",
-              "name": "Internal Server Error",
+              "name": "Bad request",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -1786,8 +1786,8 @@
                   "path": ["bookings"]
                 }
               },
-              "status": "Internal Server Error",
-              "code": 500,
+              "status": "Bad Request",
+              "code": 400,
               "_postman_previewlanguage": "text",
               "header": [
                 {
@@ -1845,7 +1845,7 @@
                   "variable": [
                     {
                       "key": "reviewId",
-                      "value": "00000000-0000-0000-0000-000000000000",
+                      "value": "j0123456-78f0-1234-5678-9abcdef01234",
                       "description": "(Required) "
                     }
                   ]
@@ -2080,8 +2080,8 @@
               "script": {
                 "id": "ec233816-c0c7-4452-9dce-a0507e60b0f4",
                 "exec": [
-                  "pm.test(\"Response status code is 500\", function() {",
-                  "    pm.response.to.have.status(500);",
+                  "pm.test(\"Response status code is 400\", function() {",
+                  "    pm.response.to.have.status(400);",
                   "});",
                   ""
                 ],
@@ -2120,7 +2120,7 @@
           "response": [
             {
               "id": "8e57b779-20eb-436d-a2f1-62488b561db0",
-              "name": "Internal Server Error",
+              "name": "Bad request",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -2145,8 +2145,8 @@
                   "path": ["reviews"]
                 }
               },
-              "status": "Internal Server Error",
-              "code": 500,
+              "status": "Bad Request",
+              "code": 400,
               "_postman_previewlanguage": "text",
               "header": [
                 {
