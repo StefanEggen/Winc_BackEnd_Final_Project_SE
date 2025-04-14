@@ -8,7 +8,7 @@ const updateReviewById = async (id, propertyId, userId, rating, comment) => {
     where: { id },
   });
   if (!existingReview) {
-    throw new Error(`Review with id ${id} not found`);
+    return null;
   }
 
   // Update the review

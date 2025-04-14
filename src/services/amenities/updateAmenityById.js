@@ -8,7 +8,7 @@ const updateAmenityById = async (id, name) => {
     where: { id },
   });
   if (!existingAmenity) {
-    throw new Error(`Amenity with id ${id} not found`);
+    return null;
   }
 
   // Update the amenity

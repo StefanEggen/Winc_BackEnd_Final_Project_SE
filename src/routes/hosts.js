@@ -106,13 +106,12 @@ router.put("/:id", auth, async (req, res, next) => {
       aboutMe
     );
 
-    if (updatedHost) {
-      res
-        .status(200)
-        .send({ message: `Host with id ${id} successfully updated` });
-    } else {
-      res.status(404).json({ error: `Host with id ${id} not found` });
+    if (!updatedHost) {
+      return res.status(404).json({ error: `Host with id ${id} not found` });
     }
+    res.status(200).send({
+      message: `Host with id ${id} successfully updated`,
+    });
   } catch (error) {
     next(error);
   }
@@ -124,13 +123,12 @@ router.delete("/:id", auth, async (req, res, next) => {
 
     const deletedHost = await deleteHostById(id);
 
-    if (deletedHost) {
-      res
-        .status(200)
-        .send({ message: `Host with id ${id} successfully deleted` });
-    } else {
-      res.status(404).json({ error: `Host with id ${id} not found` });
+    if (!deletedHost) {
+      return res.status(404).json({ error: `Host with id ${id} not found` });
     }
+    res.status(200).send({
+      message: `Host with id ${id} successfully deleted`,
+    });
   } catch (error) {
     next(error);
   }

@@ -19,7 +19,7 @@ const updatePropertyById = async (
     where: { id },
   });
   if (!existingProperty) {
-    throw new Error(`Property with id ${id} not found`);
+    return null;
   }
 
   // Update the property

@@ -17,7 +17,7 @@ const updateHostById = async (
     where: { id },
   });
   if (!existingHost) {
-    throw new Error(`Host with id ${id} not found`);
+    return null;
   }
 
   // Update the host

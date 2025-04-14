@@ -17,7 +17,7 @@ const updateBookingById = async (
     where: { id },
   });
   if (!existingBooking) {
-    throw new Error(`Booking with id ${id} not found`);
+    return null;
   }
 
   // Update the booking

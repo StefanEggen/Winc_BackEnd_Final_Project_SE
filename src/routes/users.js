@@ -105,13 +105,13 @@ router.put("/:id", auth, async (req, res, next) => {
       profilePicture
     );
 
-    if (updatedUser) {
-      res
-        .status(200)
-        .send({ message: "User with id ${id} updated successfully" });
-    } else {
-      res.status(404).json({ message: "User with id ${id} not found" });
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User with id ${id} not found" });
     }
+
+    res
+      .status(200)
+      .send({ message: "User with id ${id} updated successfully" });
   } catch (error) {
     next(error);
   }
@@ -123,13 +123,12 @@ router.delete("/:id", auth, async (req, res, next) => {
 
     const deletedUser = await deleteUserById(id);
 
-    if (deletedUser) {
-      res
-        .status(200)
-        .send({ message: "User with id ${id} deleted successfully" });
-    } else {
-      res.status(404).json({ message: "User with id ${id} not found" });
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User with id ${id} not found" });
     }
+    res
+      .status(200)
+      .send({ message: "User with id ${id} deleted successfully" });
   } catch (error) {
     next(error);
   }

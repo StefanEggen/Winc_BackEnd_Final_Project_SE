@@ -16,7 +16,7 @@ const updateUserById = async (
     where: { id },
   });
   if (!existingUser) {
-    throw new Error(`User with id ${id} not found`);
+    return null;
   }
 
   // Update the user

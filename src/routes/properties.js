@@ -19,7 +19,9 @@ router.get("/", async (req, res, next) => {
     if (properties.length > 0) {
       res.json(properties);
     } else {
-      res.status(404).json({ error: "No properties found matching the filters" });
+      res
+        .status(404)
+        .json({ error: "No properties found matching the filters" });
     }
   } catch (error) {
     next(error);
@@ -99,13 +101,15 @@ router.put("/:id", auth, async (req, res, next) => {
       rating
     );
 
-    if (updatedProperty) {
-      res
-        .status(200)
-        .send({ message: `Property with id ${id} successfully updated` });
-    } else {
-      res.status(404).json({ error: `Property with id ${id} not found` });
+    if (!updatedProperty) {
+      return res
+        .status(404)
+        .json({ error: `Property with id ${id} not found` });
     }
+
+    res
+      .status(200)
+      .send({ message: `Property with id ${id} successfully updated` });
   } catch (error) {
     next(error);
   }
@@ -117,13 +121,15 @@ router.delete("/:id", auth, async (req, res, next) => {
 
     const deletedProperty = await deletePropertyById(id);
 
-    if (deletedProperty) {
-      res
-        .status(200)
-        .send({ message: `Property with id ${id} successfully deleted` });
-    } else {
-      res.status(404).json({ error: `Property with id ${id} not found` });
+    if (!deletedProperty) {
+      return res
+        .status(404)
+        .json({ error: `Property with id ${id} not found` });
     }
+
+    res
+      .status(200)
+      .send({ message: `Property with id ${id} successfully deleted` });
   } catch (error) {
     next(error);
   }

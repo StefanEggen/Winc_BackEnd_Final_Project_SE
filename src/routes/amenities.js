@@ -49,13 +49,13 @@ router.put("/:id", auth, async (req, res, next) => {
 
     const updatedAmenity = await updateAmenityById(id, name);
 
-    if (updatedAmenity) {
-      res
-        .status(200)
-        .send({ message: `Amenity with id ${id} successfully updated` });
-    } else {
-      res.status(404).json({ error: `Amenity with id ${id} not found` });
+    if (!updatedAmenity) {
+      return res.status(404).json({ error: `Amenity with id ${id} not found` });
     }
+
+    res
+      .status(200)
+      .send({ message: `Amenity with id ${id} successfully updated` });
   } catch (error) {
     next(error);
   }

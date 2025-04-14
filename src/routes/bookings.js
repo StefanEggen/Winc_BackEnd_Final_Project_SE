@@ -96,13 +96,12 @@ router.put("/:id", auth, async (req, res, next) => {
       bookingStatus
     );
 
-    if (updatedBooking) {
-      res.status(200).send({
-        message: `Booking with id ${id} successfully updated`,
-      });
-    } else {
-      res.status(404).json({ error: `Booking with id ${id} not found` });
+    if (!updatedBooking) {
+      return res.status(404).json({ error: `Booking with id ${id} not found` });
     }
+    res.status(200).send({
+      message: `Booking with id ${id} successfully updated`,
+    });
   } catch (error) {
     next(error);
   }

@@ -54,11 +54,13 @@ router.put("/:id", auth, async (req, res, next) => {
       comment
     );
 
-    if (updatedReview) {
-      res.status(200).send({ message: "Review with id ${id} successfully updated" });
-    } else {
-      res.status(404).json({ error: "Review with id ${id} not found" });
+    if (!updatedReview) {
+      return res.status(404).json({ error: `Review with id ${id} not found` });
     }
+
+    res
+      .status(200)
+      .send({ message: `Review with id ${id} successfully updated` });
   } catch (error) {
     next(error);
   }
@@ -70,7 +72,9 @@ router.delete("/:id", auth, async (req, res, next) => {
     const deletedReview = await deleteReviewById(id);
 
     if (deletedReview) {
-      res.status(200).send({ message: "Review with id ${id} successfully deleted" });
+      res
+        .status(200)
+        .send({ message: "Review with id ${id} successfully deleted" });
     } else {
       res.status(404).json({ error: "Review with id ${id} not found" });
     }
