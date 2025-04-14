@@ -11,6 +11,16 @@ const updateHostById = async (
   aboutMe
 ) => {
   const prisma = new PrismaClient();
+
+  // Check if the host exists
+  const existingHost = await prisma.host.findUnique({
+    where: { id },
+  });
+  if (!existingHost) {
+    throw new Error(`Host with id ${id} not found`);
+  }
+
+  // Update the host
   const updatedHost = await prisma.host.update({
     where: { id },
     data: {

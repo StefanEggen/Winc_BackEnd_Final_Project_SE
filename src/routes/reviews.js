@@ -5,7 +5,6 @@ import getReviewById from "../services/reviews/getReviewById.js";
 import deleteReviewById from "../services/reviews/deleteReviewById.js";
 import updateReviewById from "../services/reviews/updateReviewById.js";
 import auth from "../middleware/auth.js";
-import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -46,11 +45,6 @@ router.get("/:id", async (req, res, next) => {
 router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    if (!isUuid(id)) {
-      return res.status(404).json({ error: "Review with id ${id} not found" });
-    }
-
     const { propertyId, userId, rating, comment } = req.body;
     const updatedReview = await updateReviewById(
       id,
@@ -73,11 +67,6 @@ router.put("/:id", auth, async (req, res, next) => {
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    if (!isUuid(id)) {
-      return res.status(404).json({ error: "Review with id ${id} not found" });
-    }
-
     const deletedReview = await deleteReviewById(id);
 
     if (deletedReview) {

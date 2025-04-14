@@ -5,7 +5,6 @@ import getHostById from "../services/hosts/getHostById.js";
 import updateHostById from "../services/hosts/updateHostById.js";
 import deleteHostById from "../services/hosts/deleteHostById.js";
 import auth from "../middleware/auth.js";
-import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -87,10 +86,6 @@ router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    if (!isUuid(id)) {
-      return res.status(404).json({ error: `Host with id ${id} not found` });
-    }
-
     const {
       username,
       password,
@@ -126,10 +121,6 @@ router.put("/:id", auth, async (req, res, next) => {
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    if (!isUuid(id)) {
-      return res.status(404).json({ error: "Host with id ${id} not found" });
-    }
 
     const deletedHost = await deleteHostById(id);
 

@@ -5,7 +5,6 @@ import getUserById from "../services/users/getUserById.js";
 import deleteUserById from "../services/users/deleteUserById.js";
 import updateUserById from "../services/users/updateUserById.js";
 import auth from "../middleware/auth.js";
-import { validate as isUuid } from "uuid";
 
 const router = Router();
 
@@ -93,12 +92,9 @@ router.put("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    if (!isUuid(id)) {
-      return res.status(404).json({ message: `User with id ${id} not found` });
-    }
-
     const { username, password, name, email, phoneNumber, profilePicture } =
       req.body;
+
     const updatedUser = await updateUserById(
       id,
       username,
@@ -124,11 +120,6 @@ router.put("/:id", auth, async (req, res, next) => {
 router.delete("/:id", auth, async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    // Validate the userId format
-    if (!isUuid(id)) {
-      return res.status(404).json({ message: `User with id ${id} not found` });
-    }
 
     const deletedUser = await deleteUserById(id);
 
