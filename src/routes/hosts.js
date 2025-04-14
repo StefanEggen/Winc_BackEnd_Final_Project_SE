@@ -19,7 +19,9 @@ router.get("/", async (req, res, next) => {
       if (host) {
         return res.json(host);
       } else {
-        return res.status(404).json({ error: `Host with name ${name} not found` });
+        return res
+          .status(404)
+          .json({ error: `Host with name ${name} not found` });
       }
     }
 
@@ -41,6 +43,16 @@ router.post("/", auth, async (req, res, next) => {
       profilePicture,
       aboutMe,
     } = req.body;
+
+    // Check if a host with the same username already exists
+    const existingHost = await getHostById(username, "username");
+    if (existingHost) {
+      return res
+        .status(400)
+        .json({ error: `Username "${username}" already exists.` });
+    }
+
+    // Create the new host
     const newHost = await createHost(
       username,
       password,
