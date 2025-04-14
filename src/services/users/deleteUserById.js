@@ -3,6 +3,14 @@ import { PrismaClient } from "@prisma/client";
 const deleteUserById = async (id) => {
   const prisma = new PrismaClient();
 
+  // Check if the user exists
+  const userExists = await prisma.user.findUnique({
+    where: { id },
+  });
+  if (!userExists) {
+    return null; // User not found
+  }
+
   // Delete related reviews
   await prisma.review.deleteMany({
     where: { userId: id },

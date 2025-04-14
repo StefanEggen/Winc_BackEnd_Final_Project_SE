@@ -3,6 +3,14 @@ import { PrismaClient } from "@prisma/client";
 const deletePropertyById = async (id) => {
   const prisma = new PrismaClient();
 
+  // Check if the property exists
+  const propertyExists = await prisma.property.findUnique({
+    where: { id },
+  });
+  if (!propertyExists) {
+    return null; // Property not found
+  }
+
   // Delete related reviews
   await prisma.review.deleteMany({
     where: { propertyId: id },
