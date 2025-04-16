@@ -33,6 +33,24 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", auth, async (req, res, next) => {
   try {
+    const requiredFields = [
+      "username",
+      "password",
+      "name",
+      "email",
+      "phoneNumber",
+      "profilePicture",
+      "aboutMe",
+    ];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const {
       username,
       password,
@@ -84,6 +102,23 @@ router.get("/:id", async (req, res, next) => {
 
 router.put("/:id", auth, async (req, res, next) => {
   try {
+    const requiredFields = [
+      "username",
+      "name",
+      "email",
+      "phoneNumber",
+      "profilePicture",
+      "aboutMe",
+    ];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const { id } = req.params;
 
     const {

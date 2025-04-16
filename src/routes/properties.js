@@ -30,6 +30,26 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", auth, async (req, res, next) => {
   try {
+    const requiredFields = [
+      "title",
+      "description",
+      "location",
+      "pricePerNight",
+      "bedroomCount",
+      "bathRoomCount",
+      "maxGuestCount",
+      "hostId",
+      "rating",
+    ];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const {
       title,
       description,
@@ -41,10 +61,6 @@ router.post("/", auth, async (req, res, next) => {
       hostId,
       rating,
     } = req.body;
-
-    if (title === "" || description === "" ) {
-      return res.status(400).json({ error: "Title and description are required" });
-    }
 
     const newProperty = await createProperty(
       title,
@@ -80,6 +96,25 @@ router.get("/:id", async (req, res, next) => {
 
 router.put("/:id", auth, async (req, res, next) => {
   try {
+    const requiredFields = [
+      "title",
+      "description",
+      "location",
+      "pricePerNight",
+      "bedroomCount",
+      "bathRoomCount",
+      "maxGuestCount",
+      "rating",
+    ];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const { id } = req.params;
 
     const {

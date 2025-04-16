@@ -19,6 +19,16 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", auth, async (req, res, next) => {
   try {
+    const requiredFields = ["name"];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const { name } = req.body;
     const newAmenity = await createAmenity(name);
     res.status(201).json(newAmenity);
@@ -44,6 +54,16 @@ router.get("/:id", async (req, res, next) => {
 
 router.put("/:id", auth, async (req, res, next) => {
   try {
+    const requiredFields = ["name"];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const { id } = req.params;
     const { name } = req.body;
 

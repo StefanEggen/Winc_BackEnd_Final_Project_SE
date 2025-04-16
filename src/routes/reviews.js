@@ -19,7 +19,18 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", auth, async (req, res, next) => {
   try {
+    const requiredFields = ["rating", "comment"];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const { propertyId, userId, rating, comment } = req.body;
+
     const newReview = await createReview(propertyId, userId, rating, comment);
     res.status(201).json(newReview);
   } catch (error) {
@@ -44,6 +55,16 @@ router.get("/:id", async (req, res, next) => {
 
 router.put("/:id", auth, async (req, res, next) => {
   try {
+    const requiredFields = ["rating", "comment"];
+
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+
+    if (missingFields.length > 0) {
+      return res
+        .status(400)
+        .json({ error: `These fields are required: ${missingFields}` });
+    }
+
     const { id } = req.params;
     const { propertyId, userId, rating, comment } = req.body;
     const updatedReview = await updateReviewById(
